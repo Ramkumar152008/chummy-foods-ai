@@ -4,6 +4,17 @@ import { getProducts, buildCartUrl, getUpsellRecommendations } from '@/lib/catal
 
 export const dynamic = 'force-dynamic';
 
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+    },
+  });
+}
+
 export async function POST(request) {
   try {
     const body = await request.json().catch(() => ({}));

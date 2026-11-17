@@ -39,6 +39,29 @@ Production-ready, brand-matched Next.js (App Router, Tailwind CSS, Google Gemini
 
 ---
 
+## 🔌 Embed Directly onto Live Shopify Store (chummyfoods.com)
+
+You can embed **ONLY** these AI modules directly onto the live Shopify store without changing your existing store design or using iframes:
+
+### A. Floating AI Chef & Recipe Chatbot
+Paste this single tag right before the closing `</body>` tag in Shopify's `theme.liquid`:
+```html
+<!-- Chummy Foods AI Chef & Recipe Assistant -->
+<script src="https://chummy-foods-ai.vercel.app/embed-chat.js" async></script>
+```
+* **Auto-detects its origin:** Uses backend API routes with CORS enabled.
+* **Direct Shopify cart integration:** Automatically executes `POST /cart/add.js` to add items directly to the customer's active Shopify cart.
+
+### B. 7-Day AI Meal Planner Studio Widget
+Place this container wherever you want the planner to appear (e.g., on your homepage or a dedicated `/pages/meal-planner` page):
+```html
+<!-- Chummy Foods 7-Day AI Meal Planner Container -->
+<div id="chummy-ai-planner"></div>
+<script src="https://chummy-foods-ai.vercel.app/embed-planner.js" async></script>
+```
+
+---
+
 ## 🎨 Brand Design System
 * **Brand Yellow:** `#FFBD3C` / `#F0A71C` (Signature turmeric gold)
 * **Deep Plum:** `#2E2A39` (Primary typography & headers)
@@ -96,8 +119,8 @@ Visit **`http://localhost:3000`** in your browser.
 chummy-ai/
 ├── app/
 │   ├── api/
-│   │   ├── chat/route.js          # Multi-lingual AI chat endpoint
-│   │   ├── meal-planner/route.js   # 7-Day meal planner endpoint
+│   │   ├── chat/route.js          # Multi-lingual AI chat endpoint (CORS enabled)
+│   │   ├── meal-planner/route.js   # 7-Day meal planner endpoint (CORS enabled)
 │   │   └── products/route.js       # Live catalog search & filter endpoint
 │   ├── globals.css                # Tailwind utilities & Google Fonts DM Sans
 │   ├── layout.js                  # Root layout with brand metadata & font
@@ -113,6 +136,9 @@ chummy-ai/
 ├── lib/
 │   ├── catalog.js                 # Real product pipeline & Shopify permalink builders
 │   └── gemini.js                  # Gemini Gen AI SDK client with JSON schema
+├── public/
+│   ├── embed-chat.js              # Standalone embeddable AI Chef chatbot for Shopify
+│   └── embed-planner.js           # Standalone embeddable 7-Day Meal Planner for Shopify
 ├── chummy_products.json           # Live Shopify product catalog JSON
 ├── .env.example                   # Safe environment template
 ├── .gitignore                     # Git ignore rules (.env.local & node_modules protected)
